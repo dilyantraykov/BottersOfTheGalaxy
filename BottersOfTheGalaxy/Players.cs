@@ -798,7 +798,7 @@ namespace BottersOfTheGalaxy
 
             if (targetUnit != null)
             {
-                var targetPosition = new Position(targetUnit.Position.X + (hero.Team == 0 ? -50 : 50), targetUnit.Position.Y);
+                var targetPosition = new Position(targetUnit.Position.X + (hero.Team == 0 ? -1 : 1), targetUnit.Position.Y);
                 context.Move(targetPosition);
                 return true;
             }
@@ -845,7 +845,7 @@ namespace BottersOfTheGalaxy
         public override bool CanProcessTurn(GameContext context, Hero hero)
         {
             var towerPosition = context.MyUnits.FirstOrDefault(u => u.UnitType == UnitType.Tower).Position;
-            var myTowerPosition = new Position(towerPosition.X + (hero.Team == 0 ? -50 : 50), towerPosition.Y);
+            var myTowerPosition = new Position(towerPosition.X + (hero.Team == 0 ? -1 : 1), towerPosition.Y);
             var targetUnit = context.MyUnits.Where(u => u.UnitType != UnitType.Tower).OrderBy(u => MathUtils.GetDistance(myTowerPosition, u.Position)).FirstOrDefault();
             var enemyTower = context.EnemyUnits.FirstOrDefault(u => u.UnitType == UnitType.Tower);
             if (targetUnit != null)
